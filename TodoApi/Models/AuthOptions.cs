@@ -13,8 +13,7 @@ namespace TodoApi.Models
     {
         public static string Issuer => "TM";
         public static string Audience => "APIclients";
-        public static int LifetimeInYears => 1;
-        public static SecurityKey SigningKey => new SymmetricSecurityKey(Encoding.ASCII.GetBytes("superSecretKeyMustBeLoooooong"));
+        public static SecurityKey SigningKey => new SymmetricSecurityKey(Encoding.ASCII.GetBytes("superSecretKey_CoVid19"));
 
         internal static string GenerateToken(bool is_admin = false)
         {
@@ -32,7 +31,7 @@ new Claim(ClaimsIdentity.DefaultRoleClaimType, is_admin?"admin":"guest")
             issuer: Issuer,
             audience: Audience,
             notBefore: now,
-            expires: now.AddYears(LifetimeInYears),
+            expires: now.AddYears(1),
             claims: identity.Claims,
             signingCredentials: new SigningCredentials(SigningKey, SecurityAlgorithms.HmacSha256)); ;
             var encodedJwt = new JwtSecurityTokenHandler().WriteToken(jwt);

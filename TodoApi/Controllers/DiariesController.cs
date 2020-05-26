@@ -21,12 +21,20 @@ namespace TodoApi.Controllers
             _context = context;
         }
       
-        // GET: api/Diaries
+        // GET: api/Diaries/holidays
         [HttpGet ("holidays")]
         [Authorize]
         public IEnumerable<Diary> getDay()
         {
             return _context.getDayHoliday(_context.Diaries);
+        }
+
+        // GET: api/Diaries/firstday
+        [HttpGet("firstday")]
+        [Authorize]
+        public IEnumerable<Diary> getTasks()
+        {
+            return _context.getTasksFirstDayofMonth(_context.Diaries);
         }
 
         // GET: api/Diaries
@@ -40,6 +48,7 @@ namespace TodoApi.Controllers
 
         // GET: api/Diaries/5
         [HttpGet("{id}")]
+        [Authorize]
         public async Task<ActionResult<Diary>> GetDiary(long id)
         {
             var diary = await _context.Diaries.FindAsync(id);

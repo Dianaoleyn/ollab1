@@ -32,7 +32,7 @@ namespace TodoApi
             services.AddDbContext<Todocontext>(opt =>
               opt.UseInMemoryDatabase("TodoList"));
             services.AddDbContext<Diarycontext>(opt =>
-               opt.UseInMemoryDatabase("TodoList"));
+               opt.UseInMemoryDatabase("DiaryList"));
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(options =>
             {
                 options.TokenValidationParameters = new TokenValidationParameters()
